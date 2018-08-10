@@ -78,3 +78,6 @@ typings/
 
 # ide
 .idea
+
+#package
+package-lock.json

@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../assets/App.css';
 
 // Component
 import Home from '../components/Home';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Login from '../components/Login';
 import Register from '../components/Register';
 
@@ -25,7 +23,6 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/protected" component={Protected} linkTo="/login" auth={isAuth} />
-        <Footer />
       </div>
     );
   }
