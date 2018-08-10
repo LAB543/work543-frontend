@@ -1,6 +1,27 @@
 // Actions
-import * as actions from '../constans/ActionTypes';
+import * as actions from '../constants/ActionTypes';
 import axios from 'axios';
+
+export const userRegister = (data) => (dispatch) => {
+  const config = { 'Content-Type': 'application/json' }
+  const authUser = axios.post('/api/auth/register', data, config);
+
+  authUser.then(res => {
+    dispatch({
+      type: actions.USER_REGISTER_SUCCESS,
+      payload: {
+        message: res.data.message,
+        status: res.status
+      }
+    });
+  })
+  .catch(err => {
+    dispatch({
+      type: actions.USER_REGISTER_FAIL,
+      payload: err.response.data.message
+    });
+  });
+}
 
 export const userLogin = (data) => (dispatch) => {
   const config = {'Content-Type': 'application/json'}
@@ -20,20 +41,4 @@ export const userLogin = (data) => (dispatch) => {
   });
 }
 
-export const userRegister = (data) => (dispatch) => {
-  const config = { 'Content-Type': 'application/json' }
-  const authUser = axios.post('/api/auth/register', data, config);
 
-  authUser.then(res => {
-    dispatch({
-      type: actions.USER_REGISTER_SUCCESS,
-      payload: res.data.message
-    });
-  })
-    .catch(err => {
-      dispatch({
-        type: actions.USER_REGISTER_FAIL,
-        payload: err.response.data.message
-      });
-    });
-}

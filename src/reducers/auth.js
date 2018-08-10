@@ -1,8 +1,9 @@
-import * as actions from '../constans/ActionTypes';
+import * as actions from '../constants/ActionTypes';
 
 const initialState = {
   isAuth : null,
   success: null,
+  status: null,
   error: null
 }
 
@@ -11,7 +12,8 @@ const authReducer = (state = initialState, action) => {
     case actions.USER_REGISTER_SUCCESS:
       return {
         ...state,
-        success: action.payload
+        success: action.payload.message,
+        status: action.payload.status
       };
     case actions.USER_REGISTER_FAIL:
       return {
