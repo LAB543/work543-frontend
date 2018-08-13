@@ -7,7 +7,6 @@ const Home = () => {
       <Sidebar />
       <div className="content-wrapper">
         <div className="content" style={{height: '100vh',}}>
-          DashBoard Component
         </div>
       </div>
     </div>

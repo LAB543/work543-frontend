@@ -37,7 +37,7 @@ export const userLogin = (data) => (dispatch) => {
   authUser.then(res => {
     if (res.status === 200) {
       sessionStorage.setItem(`user-token`, res.data.data.token);
-      browserHistory.push('/');
+      browserHistory.push('/dashboard');
       return dispatch({
         type: actions.USER_LOGIN_SUCCESS,
         payload: res.data
@@ -52,9 +52,25 @@ export const userLogin = (data) => (dispatch) => {
   });
 };
 
+export const userLoginCheck = () => (dispatch) => {
+  console.log(sessionStorage.getItem('user-token') !== null);
+  if (sessionStorage.getItem('user-token') !== null) {
+    return  dispatch({
+      type: actions.USER_LOGIN_CHECK,
+      payload: true
+    });
+  } else {
+    return null;
+  }
+}
+
 export const userLogout = () => (dispatch) => {
   browserHistory.push('/');
   return dispatch({
-    type: actions.USER_LOGOUT
+    type: actions.USER_LOGOUT,
+    payload :{
+      token: null,
+      isAuth: false
+    }
   });
 };

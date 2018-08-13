@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 // Assets/images
 import logo from '../assets/images/logo_light.png';
-import userImage from '../assets/images/placeholders/placeholder.jpg';
 
 // Actions
 import { userLogout } from '../actions';
@@ -34,6 +33,8 @@ class Nav extends Component {
   }
 
   render() {
+    const { isAuth } = this.props.auth;
+
     return (
       <div>
         <div className="navbar navbar-expand-md navbar-dark">
@@ -43,38 +44,33 @@ class Nav extends Component {
             </Link>
           </div>
 
-          <div className="collapse navbar-collapse" id="navbar-mobile">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a href="/" className="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
-                  <i className="icon-paragraph-justify3"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
+          <div className="collapse navbar-collapse" id="navbar-mobile" style={{ justifyContent : "flex-end"}}>
             <ul className="navbar-nav">
               <li className="nav-item dropdown dropdown-user">
-                <a href="/" className="navbar-nav-link dropdown-toggle" onClick={(e) => this.onToggleClick(e)}>
-                  <img src={userImage} className="rounded-circle" alt="" />
-                  <span>Username</span>
+                <a href="/" className="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block" onClick={(e) => this.onToggleClick(e)}>
+                  <i className="icon-paragraph-justify3"></i>
                 </a>
-
                 <div className={`dropdown-menu dropdown-menu-right ${!this.state.toggleMenu ? '': 'show'}`}>
-                  <a href="/" className="dropdown-item"><i className="icon-user"></i> My profile</a>
-                  <a href="/login" className="dropdown-item"><i className="icon-user-plus"></i> Login</a>
-                  <a href="/register" className="dropdown-item"><i className="icon-user-plus"></i> Register</a>
-                  <a className="dropdown-item" onClick={(e) => this.handleUserLogout(e) }><i className="icon-switch2"></i> Logout</a>
+                  {
+                    isAuth ?
+                    <a className="dropdown-item" onClick={(e) => this.handleUserLogout(e)}><i className="icon-switch2"></i> Logout</a> :
+                    <div>
+                      <a href="/login" className="dropdown-item"><i className="icon-user-plus"></i> Login</a>
+                      <a href="/register" className="dropdown-item"><i className="icon-user-plus"></i> Register</a>
+                    </div>
+                  }
                 </div>
               </li>
             </ul>
           </div>
-
         </div>
       </div>
     );
   }
 };
 
-export default connect(null, { userLogout })(Nav);
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { userLogout })(Nav);
