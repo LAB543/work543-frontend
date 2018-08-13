@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+// Containers
+import PrivateRouteContainer from './PrivateRouteContainer';
 
 // Component
 import Home from '../components/Home';
@@ -11,11 +14,17 @@ import Register from '../components/Register';
 import Dashboard from '../components/Dashboard';
 import Tool from '../components/Tool';
 import PrivateRoute from '../components/PrivateRoute';
+import PublicRoute from '../components/PublicRoute';
 
 // Actions
 import { userLoginCheck } from '../actions';
 
 class App extends Component {
+
+  state = {
+    value : false,
+  }
+
   componentDidMount() {
     this.props.userLoginCheck();
   }
@@ -26,28 +35,15 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        {
-          isAuth ?
-          <Redirect to="dashboard" /> :
-          <Route exact path="/" component={Home} />
-        }
-        <Route exact path="/" component={Home} />
+        <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-
-        {
-          isAuth ?
-          <div>
-            <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={isAuth} />
-            <PrivateRoute path="/tool/:id" component={Tool} linkTo="/login" auth={isAuth} />
-          </div>
-          :
-          <div>
-            <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={isAuth} />
-            <PrivateRoute path="/tool/:id" component={Tool} linkTo="/login" auth={isAuth} />
-          </div>
-        }
-
+        <PublicRoute exact path="/" component={Home} linkTo="/dashboard" auth={isAuth} />
+        <PrivateRouteContainer>
+          <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={isAuth} />
+          <PrivateRoute path="/tool/:id" component={Tool} linkTo="/login" auth={isAuth} />
+        </PrivateRouteContainer>
+        </Switch>
       </div>
     );
   }

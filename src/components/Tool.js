@@ -3,7 +3,7 @@ import React from 'react';
 const Tool = (props) => {
   return(
     <div>
-      Tool
+      Tool Component {props.match.params.id}
     </div>
   );
 };
