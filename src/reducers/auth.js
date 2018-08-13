@@ -1,19 +1,17 @@
 import * as actions from '../constants/ActionTypes';
 
 const initialState = {
+  user: {},
   isAuth : null,
-  success: null,
-  status: null,
-  error: null
+  token: null,
+  error: {}
 }
 
 const authReducer = (state = initialState, action) => {
   switch(action.type) {
     case actions.USER_REGISTER_SUCCESS:
       return {
-        ...state,
-        success: action.payload.message,
-        status: action.payload.status
+        ...state
       };
     case actions.USER_REGISTER_FAIL:
       return {
@@ -23,12 +21,19 @@ const authReducer = (state = initialState, action) => {
     case actions.USER_LOGIN_SUCCESS :
       return {
         ...state,
-        isAuth: action.payload
+        user: action.payload.data.user,
+        token: action.payload.data.token,
+        isAuth: true,
       };
     case actions.USER_LOGIN_FAIL:
       return {
         ...state,
         error: action.payload
+      };
+    case actions.USER_LOGOUT:
+      return {
+        ...state,
+        token: null
       };
     default:
       return state;

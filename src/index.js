@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import browserHistory from './utils/history';
 import ReduxThunk from 'redux-thunk';
 
 // Default
@@ -15,12 +16,19 @@ import registerServiceWorker from './registerServiceWorker';
 // Reducers
 import reducers from './reducers';
 
+const middlewares = [ReduxThunk];
+if (process.env.NODE_ENV === `development`) {
+  const { logger } = require(`redux-logger`);
+
+  middlewares.push(logger);
+}
+
 // Middlewares
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router>
+    <Router history={browserHistory}>
       <App />
     </Router>
   </Provider>

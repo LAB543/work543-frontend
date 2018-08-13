@@ -5,23 +5,40 @@ import { connect } from 'react-redux';
 import { userRegister } from '../actions';
 
 class Register extends Component {
+  state = {
+    username :'',
+    firstName :'',
+    lastName :'',
+    email: '',
+    password :''
+  }
+
+  onInputChange(e) {
+    const { name, value } = e.target;
+    this.setState({[name] : value});
+  }
 
   handleSubmit(e) {
     e.preventDefault();
 
+    const { username, firstName, lastName, password, email } = this.state;
+
     const authData = {
-      username: e.target.username.value,
-      password: e.target.password.value
+      username,
+      firstName,
+      lastName,
+      email,
+      password
     }
 
-    return this.props.userRegister(authData)
+    return this.props.userRegister(authData);
   }
 
   render() {
     return (
       <div className="register">
         <div className="content d-flex justify-content-center align-items-center">
-          <form className="login-form">
+          <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
             <div className="card mb-0">
               <div className="card-body">
 
@@ -36,35 +53,37 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="text" className="form-control" placeholder="Username" />
+                  <input type="text" name="username" className="form-control" placeholder="Username" required onChange={(e) => this.onInputChange(e)} />
                   <div className="form-control-feedback">
                     <i className="icon-user-check text-muted"></i>
                   </div>
-                  <span className="form-text text-danger"><i className="icon-cancel-circle2 mr-2"></i> This username is already taken</span>
                 </div>
 
                 <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="password" className="form-control" placeholder="Password" />
+                  <input type="text" name="firstName" className="form-control" placeholder="First name" required onChange={(e) => this.onInputChange(e)} />
+                  <div className="form-control-feedback">
+                    <i className="icon-user-check text-muted"></i>
+                  </div>
+                </div>
+
+                <div className="form-group form-group-feedback form-group-feedback-left">
+                  <input type="text" name="lastName" className="form-control" placeholder="Last name" required onChange={(e) => this.onInputChange(e)} />
+                  <div className="form-control-feedback">
+                    <i className="icon-user-check text-muted"></i>
+                  </div>
+                </div>
+
+                <div className="form-group form-group-feedback form-group-feedback-left">
+                  <input type="text" name="email" className="form-control" placeholder="Your email" required onChange={(e) => this.onInputChange(e)} />
+                  <div className="form-control-feedback">
+                    <i className="icon-mention text-muted"></i>
+                  </div>
+                </div>
+
+                <div className="form-group form-group-feedback form-group-feedback-left">
+                  <input type="password" name="password" className="form-control" placeholder="Password" required onChange={(e) => this.onInputChange(e)} />
                   <div className="form-control-feedback">
                     <i className="icon-user-lock text-muted"></i>
-                  </div>
-                </div>
-
-                <div className="form-group text-center text-muted content-divider">
-                  <span className="px-2">Your contacts</span>
-                </div>
-
-                <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="password" className="form-control" placeholder="Your email" />
-                  <div className="form-control-feedback">
-                    <i className="icon-mention text-muted"></i>
-                  </div>
-                </div>
-
-                <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="password" className="form-control" placeholder="Repeat email" />
-                  <div className="form-control-feedback">
-                    <i className="icon-mention text-muted"></i>
                   </div>
                 </div>
 

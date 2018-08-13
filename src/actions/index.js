@@ -1,7 +1,7 @@
 // Actions
 import * as actions from '../constants/ActionTypes';
 import axios from 'axios';
-
+import browserHistory from '../utils/history';
 
 // for external api server connection - 201808101214 Hwan Oh
 const instance = axios.create({
@@ -11,22 +11,19 @@ const instance = axios.create({
 });
 
 export const userRegister = (data) => (dispatch) => {
-  const config = { 'Content-Type': 'application/json' }
-  const authUser = instance.post('/register', data, config);
+  const config = { 'Content-Type': 'application/x-www-form-urlencoded' };
+  const authUser = instance.post('/user', data, config);
 
   authUser.then(res => {
-    console.log(res);
-    dispatch({
-      type: actions.USER_REGISTER_SUCCESS,
-      payload: {
-        message: res.data.message,
-        status: res.status
-      }
-    });
+    if (res.status === 201) {
+      browserHistory.push('/login');
+      return dispatch({
+        type: actions.USER_REGISTER_SUCCESS
+      });
+    }
   })
   .catch(err => {
-    console.log(err);
-    dispatch({
+    return dispatch({
       type: actions.USER_REGISTER_FAIL,
       payload: err.response.data.message
     });
@@ -34,19 +31,30 @@ export const userRegister = (data) => (dispatch) => {
 };
 
 export const userLogin = (data) => (dispatch) => {
-  const config = {'Content-Type': 'application/json'}
-  const authUser = instance.post('/register', data, config);
+  const config = { 'Content-Type': 'application/x-www-form-urlencoded'}
+  const authUser = instance.post('/login', data, config);
 
   authUser.then(res => {
-    dispatch({
-      type: actions.USER_LOGIN_SUCCESS,
-      payload: res.data.token
-    });
+    if (res.status === 200) {
+      sessionStorage.setItem(`user-token`, res.data.data.token);
+      browserHistory.push('/');
+      return dispatch({
+        type: actions.USER_LOGIN_SUCCESS,
+        payload: res.data
+      });
+    }
   })
   .catch(err => {
-    dispatch({
+    return dispatch({
       type: actions.USER_LOGIN_FAIL,
-      payload: err.response.data.message
+      payload: err.response.data
     });
+  });
+};
+
+export const userLogout = () => (dispatch) => {
+  browserHistory.push('/');
+  return dispatch({
+    type: actions.USER_LOGOUT
   });
 };

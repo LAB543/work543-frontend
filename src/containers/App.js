@@ -8,21 +8,32 @@ import Home from '../components/Home';
 import Header from '../components/Header';
 import Login from '../components/Login';
 import Register from '../components/Register';
-
+import Dashboard from '../components/Dashboard';
 import PrivateRoute from '../components/PrivateRoute';
 import Protected from '../components/Protected';
 
 class App extends Component {
-  render() {
-    const { isAuth } = this.props.auth;
+  state = {
+    isAuth : false
+  }
 
+  componentDidMount() {
+    if (sessionStorage.getItem('user-token')) {
+      this.setState({
+        isAuth: true
+      });
+    }
+  }
+
+  render() {
     return (
       <div className="app">
         <Header />
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/protected" component={Protected} linkTo="/login" auth={isAuth} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={this.state.isAuth} />
+        <PrivateRoute path="/protected" component={Protected} linkTo="/login" auth={this.state.isAuth} />
       </div>
     );
   }

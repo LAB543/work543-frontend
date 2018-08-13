@@ -68,6 +68,7 @@ typings/
 
 # server
 /server
+/_server_dev
 
 # misc
 .DS_Store
