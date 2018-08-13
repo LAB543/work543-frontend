@@ -33,7 +33,13 @@ const authReducer = (state = initialState, action) => {
     case actions.USER_LOGOUT:
       return {
         ...state,
-        token: null
+        token: action.payload.token,
+        isAuth : action.payload.isAuth
+      };
+    case actions.USER_LOGIN_CHECK:
+      return {
+        ...state,
+        isAuth: action.payload
       };
     default:
       return state;

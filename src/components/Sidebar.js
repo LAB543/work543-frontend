@@ -22,21 +22,21 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                <i className="icon-people"></i>
-                <span>Login</span>
+              <Link to="/tool/1" className="nav-link">
+                <i className="icon-file-empty"></i>
+                <span>Tool 1</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/register" className="nav-link">
-                <i className="icon-people"></i>
-                <span>Register</span>
+              <Link to="/tool/2" className="nav-link">
+                <i className="icon-file-plus"></i>
+                <span>Tool 2</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/protected" className="nav-link">
-                <i className="icon-copy"></i>
-                <span>Protected</span>
+              <Link to="/tool/3" className="nav-link">
+                <i className="icon-check"></i>
+                <span>Tool 3</span>
               </Link>
             </li>
           </ul>
