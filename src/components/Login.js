@@ -1,26 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import browserHistory from '../utils/history';
+
 
 // Action
 import { userLogin } from '../actions';
 
 class Login extends Component {
+  state = {
+    username: '',
+    password: '',
+  }
+
+  componentDidMount() {
+    if (sessionStorage.getItem('user-token')) {
+      browserHistory.push('/');
+    }
+  }
+
+  onInputChange(e) {
+    const {name , value} = e.target;
+    this.setState({ [name]: value });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
+    const { username, password } = this.state;
+
     const authData = {
-      username: e.target.username.value,
-      password: e.target.password.value
+      username,
+      password
     }
 
-    return this.props.userLogin(authData)
+    return this.props.userLogin(authData);
   }
 
   render() {
     return (
       <div className="login">
         <div className="content d-flex justify-content-center align-items-center">
-          <form className="login-form">
+          <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
             <div className="card mb-0">
               <div className="card-body">
                 <div className="text-center mb-3">
@@ -30,13 +51,13 @@ class Login extends Component {
                 </div>
 
                 <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="text" className="form-control" placeholder="Username" />
+                  <input type="text" name="username" className="form-control" placeholder="Username" required onChange={(e) => this.onInputChange(e)} />
                     <div className="form-control-feedback">
                       <i className="icon-user text-muted"></i>
                     </div>
                 </div>
                 <div className="form-group form-group-feedback form-group-feedback-left">
-                  <input type="password" className="form-control" placeholder="Password" />
+                  <input type="password" name="password" className="form-control" placeholder="Password" required onChange={(e) => this.onInputChange(e)} />
                   <div className="form-control-feedback">
                     <i className="icon-lock2 text-muted"></i>
                   </div>
@@ -47,7 +68,7 @@ class Login extends Component {
                 </div>
 
                 <div className="text-center">
-                  <a href="">Forgot password?</a>
+                  <a href="/">Forgot password?</a>
                 </div>
               </div>
             </div>
@@ -62,4 +83,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { userLogin })(Login);
+export default withRouter(connect(mapStateToProps, { userLogin })(Login));

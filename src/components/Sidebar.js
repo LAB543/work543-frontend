@@ -16,9 +16,9 @@ const Sidebar = () => {
               */
             }
             <li className="nav-item">
-              <Link to="/" className="nav-link">
+              <Link to="/dashboard" className="nav-link">
                 <i className="icon-home4"></i>
-                <span>Home</span>
+                <span>Dashboard</span>
               </Link>
             </li>
             <li className="nav-item">
