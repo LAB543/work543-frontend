@@ -5,7 +5,7 @@ import browserHistory from '../utils/history';
 
 // for external api server connection - 201808101214 Hwan Oh
 const instance = axios.create({
-    baseURL: 'http://localhost:3000/v1',
+    baseURL: 'http://api.work543.com/v1',
     timeout: 1000,
     //headers: {'X-Custom-Header': 'foobar'}
 });
@@ -31,7 +31,7 @@ export const userRegister = (data) => (dispatch) => {
 };
 
 export const userLogin = (data) => (dispatch) => {
-  const config = { 'Content-Type': 'application/x-www-form-urlencoded'}
+  const config = { 'Content-Type': 'application/x-www-form-urlencoded'};
   const authUser = instance.post('/login', data, config);
 
   authUser.then(res => {
