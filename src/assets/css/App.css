@@ -1,6 +1,8 @@
 /* Common */
 
 /* App.css */
+.app { min-height: 100vh; }
+.page-content { min-height: 100vh; }
 
 /* Header */
 
@@ -13,3 +15,7 @@
 /* Login */
 
 /* Protected */
+
+/* Sidebar */
+.nav-sub-visible {display:block !important; transition:all 0.6 ease;}
+.nav-sub-visible.nav-sub-open {height:auto;}

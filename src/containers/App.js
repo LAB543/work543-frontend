@@ -6,13 +6,30 @@ import PropTypes from 'prop-types';
 // Containers
 import PrivateRouteContainer from './PrivateRouteContainer';
 
-// Component
+// Components
+import Header from '../components/_layout/Header';
+import Footer from '../components/_layout/Footer';
+import Sidebar from '../components/_layout/Sidebar';
+import PageHeader from '../components/_layout/PageHeader';
 import Home from '../components/Home';
-import Header from '../components/Header';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import Dashboard from '../components/Dashboard';
-import Tool from '../components/Tool';
+import Dashboard from '../components/dashboard/Dashboard';
+
+// Component - facebook
+import FBCommentCollector from '../components/facebook/CommentCollector';
+
+// Component - instagram
+import PostCollector from '../components/instagram/PostCollector';
+import TagCollector from '../components/instagram/TagCollector';
+
+// Component - youtube
+import YTCommentCollector from '../components/facebook/CommentCollector';
+
+// Component - etc
+import PrivacyMasking from '../components/etc/PrivacyMasking';
+
+// Routing
 import PrivateRoute from '../components/PrivateRoute';
 import PublicRoute from '../components/PublicRoute';
 
@@ -20,11 +37,6 @@ import PublicRoute from '../components/PublicRoute';
 import { userLoginCheck } from '../actions';
 
 class App extends Component {
-
-  state = {
-    value : false,
-  }
-
   componentDidMount() {
     this.props.userLoginCheck();
   }
@@ -35,15 +47,31 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <PublicRoute exact path="/" component={Home} linkTo="/dashboard" auth={isAuth} />
-        <PrivateRouteContainer>
-          <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={isAuth} />
-          <PrivateRoute path="/tool/:id" component={Tool} linkTo="/login" auth={isAuth} />
-        </PrivateRouteContainer>
-        </Switch>
+        { /* page-content */ }
+        <div className="page-content">
+            { isAuth && <Sidebar /> }
+            
+            { /* content-wrapper */ }
+			      <div className="content-wrapper">
+              { isAuth && <PageHeader /> }
+              <Switch>
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <PublicRoute exact path="/" component={Home} linkTo="/dashboard" auth={isAuth} />
+                <PrivateRouteContainer>
+                  <PrivateRoute path="/dashboard" component={Dashboard} linkTo="/login" auth={isAuth} />
+                  <PrivateRoute path="/facebook/comment-collector" component={FBCommentCollector} linkTo="/login" auth={isAuth} />
+                  <PrivateRoute path="/instagram/post-collector" component={PostCollector} linkTo="/login" auth={isAuth} />
+                  <PrivateRoute path="/instagram/tag-collector" component={TagCollector} linkTo="/login" auth={isAuth} />
+                  <PrivateRoute path="/youtube/comment-collector" component={YTCommentCollector} linkTo="/login" auth={isAuth} />
+                  <PrivateRoute path="/etc/privacy-masking" component={PrivacyMasking} linkTo="/login" auth={isAuth} />
+                </PrivateRouteContainer>
+              </Switch>
+				    <Footer />
+          </div>
+          { /* /content-wrapper */ }
+        </div>
+        { /* /page-content */ }
       </div>
     );
   }

@@ -16,6 +16,7 @@ import registerServiceWorker from './registerServiceWorker';
 // Reducers
 import reducers from './reducers';
 
+// Middlewares
 const middlewares = [ReduxThunk];
 if (process.env.NODE_ENV === `development`) {
   const { logger } = require(`redux-logger`);
@@ -23,7 +24,6 @@ if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);
 }
 
-// Middlewares
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
 ReactDOM.render(
