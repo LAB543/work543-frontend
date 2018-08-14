@@ -53,24 +53,22 @@ export const userLogin = (data) => (dispatch) => {
 };
 
 export const userLoginCheck = () => (dispatch) => {
-  console.log(sessionStorage.getItem('user-token') !== null);
   if (sessionStorage.getItem('user-token') !== null) {
     return  dispatch({
       type: actions.USER_LOGIN_CHECK,
       payload: true
     });
-  } else {
-    return null;
   }
+  return null;
 }
 
 export const userLogout = () => (dispatch) => {
   browserHistory.push('/');
   return dispatch({
     type: actions.USER_LOGOUT,
-    payload :{
+    payload: {
       token: null,
-      isAuth: false
+      isAuth: null
     }
   });
 };

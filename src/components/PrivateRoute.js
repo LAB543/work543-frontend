@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ path: Path, component: Component, linkTo: LinkTo, auth: Auth }) => (
+const PrivateRoute = ({ exact: Exact, path: Path, component: Component, linkTo: LinkTo, auth: isAuth }) => (
   <Route path={Path} render={props => (
-    !!Auth ? <Component {...props} /> : <Redirect to={LinkTo} />
+    isAuth !== null ?
+    (<Component {...props} />) :
+    (<Redirect to={LinkTo} />)
   )} />
 );
 
-export default PrivateRoute;
+export default connect(null, null, null, { pure: false })(PrivateRoute);
