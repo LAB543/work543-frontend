@@ -1,12 +1,12 @@
 import React from 'react';
 
-const TagCollector = (props) => {
+const AccountMonitor = (props) => {
   return(
     <div className="card">
 
       { /* card-header header-elements-inline */ }
       <div className="card-header header-elements-inline">
-        <h5 className="card-title">인스타그램 태그 수집기</h5>
+        <h5 className="card-title">인스타그램 계정 모니터</h5>
         <div className="header-elements">
           <div className="list-icons">
             <a className="list-icons-item" data-action="collapse"></a>
@@ -20,14 +20,14 @@ const TagCollector = (props) => {
       { /* card-body */ }
       <div className="card-body">
         <p className="mb-4">
-          인스타그램에서 태그를 검색했을 때 나오는 관련 태그들과 포스팅 수를 추출합니다. 결과는 실시간으로 제공됩니다.
+          인스타그램 계정을 모니터링합니다. 결과는 배치로 제공됩니다.
         </p>
 
         <div className="form-group row">
-          <label className="col-form-label col-lg-2">태그</label>
+          <label className="col-form-label col-lg-2">아이디 / 지역 / 태그</label>
           <div className="col-lg-10">
             <div className="input-group">
-              <input type="text" className="form-control" placeholder="태그명 ex) 현대카드, 삼성카드" />
+              <input type="text" className="form-control" placeholder="Right button" />
               <span className="input-group-append">
                 <button className="btn btn-light" type="button">추출</button>
               </span>
@@ -42,4 +42,4 @@ const TagCollector = (props) => {
   );
 };
 
-export default TagCollector;
+export default AccountMonitor;

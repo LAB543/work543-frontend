@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class CommentCollector extends Component {
+class PostMonitor extends Component {
   render() {
     return(
       <div className="card">
 
         { /* card-header header-elements-inline */ }
         <div className="card-header header-elements-inline">
-          <h5 className="card-title">페이스북 댓글 수집기</h5>
+          <h5 className="card-title">페이스북 포스트 모니터</h5>
           <div className="header-elements">
             <div className="list-icons">
               <a className="list-icons-item" data-action="collapse"></a>
@@ -21,7 +21,7 @@ class CommentCollector extends Component {
         { /* card-body */ }
         <div className="card-body">
           <p className="mb-4">
-            페이스북 댓글을 추출합니다. 결과는 배치로 제공됩니다.
+            페이스북 포스트를 모니터링합니다. 결과는 배치로 제공됩니다.
           </p>
 
           <div className="form-group row">
@@ -44,4 +44,4 @@ class CommentCollector extends Component {
   }
 };
 
-export default CommentCollector;
+export default PostMonitor;

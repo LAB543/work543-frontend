@@ -6,7 +6,20 @@ class Sidebar extends Component {
     super(props);
 
     this.toggleMenu = React.createRef();
+
+    this.state = {
+       active: false
+    };
   }
+
+  /*
+  onClickDahsboard(e) {
+    e.currentTarget.classList.add('active');
+
+    // remove toggle
+    this.onToggleClick(e);
+  };
+  */
 
   onToggleClick(e) {
     e.preventDefault();
@@ -25,23 +38,18 @@ class Sidebar extends Component {
     });
 
     filterToggleMenu.forEach((children) => {
-      if (children.classList.contains(toggleItemOpen)) {
+      if ( (children !== toggleTarget && children.classList.contains(toggleItemOpen))
+          || (children === toggleTarget && children.classList.contains(toggleItemOpen)) ) {
         children.classList.remove(toggleItemOpen);
+        children.children[1].classList.remove(toggleVisible);
+        children.children[1].classList.remove(toggleSubOpen);
+      } else if(children === toggleTarget) {
+        children.classList.add(toggleItemOpen);
+        children.children[1].classList.add(toggleVisible);
+
+
       }
     });
-
-    for (var i = 0; i < filterToggleMenu.length; i++) {
-      filterToggleMenu[i].classList.remove(toggleItemOpen);
-      filterToggleMenu[i].children[1].classList.remove(toggleVisible);
-      filterToggleMenu[i].children[1].classList.remove(toggleSubOpen);
-    }
-
-    toggleTarget.classList.add(toggleItemOpen);
-    toggleTarget.children[1].classList.add(toggleVisible);
-
-    setTimeout(() => {
-      toggleTarget.children[1].classList.add(toggleItemOpen);
-    }, 300);
   }
 
   render() {
@@ -59,12 +67,12 @@ class Sidebar extends Component {
                 <i className="icon-menu" title="Main"></i>
               </li>
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-link">
+                <Link to="/dashboard" id="dashboard" className="nav-link">
                   <i className="icon-home4"></i>
                   <span>Dashboard</span>
                 </Link>
               </li>
-              {/* Sidebar - Title - Main */}
+              {/* /Sidebar - Title - Main */}
               
               {/* Sidebar - Title - Tools */}
               <li className="nav-item-header">
@@ -77,11 +85,16 @@ class Sidebar extends Component {
               
               {/* Sidebar - Tools - facebook */}
               <li className="nav-item nav-submenu">
-                <a className="nav-link" onClick={(e) => this.onToggleClick(e)}>
+                <a className="nav-link" id="facebook" onClick={(e) => this.onToggleClick(e)}>
                   <i className="icon-facebook2"></i>
                   <span>Facebook</span>
                 </a>
                 <ul className="nav nav-group-sub" data-submenu-title="Facebook">
+                  <li className="nav-item">
+                    <Link to="/facebook/post-monitor" className="nav-link">
+                      포스트 모니터
+                    </Link>
+                  </li>
                   <li className="nav-item">
                     <Link to="/facebook/comment-collector" className="nav-link">
                       댓글 수집기
@@ -98,6 +111,11 @@ class Sidebar extends Component {
                   <span>Instagram</span>
                 </a>
                 <ul className="nav nav-group-sub" data-submenu-title="Instagram">
+                  <li className="nav-item">
+                    <Link to="/instagram/account-monitor" className="nav-link">
+                      계정 모니터
+                    </Link>
+                  </li>
                   <li className="nav-item">
                     <Link to="/instagram/post-collector" className="nav-link">
                       포스팅 수집기
