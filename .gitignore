@@ -79,6 +79,7 @@ typings/
 
 # ide
 .idea
+goorm.manifest
 
 #package
 package-lock.json
