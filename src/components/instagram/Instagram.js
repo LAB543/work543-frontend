@@ -6,17 +6,17 @@ import AccountMonitor from "./AccountMonitor";
 
 const Instagram = (props) => {
 
-    const Components = {
-        'post-collector': PostCollector,
-        'tag-collector': TagCollector,
-        'account-monitor': AccountMonitor
-    };
+  const Components = {
+    'post-collector': PostCollector,
+    'tag-collector': TagCollector,
+    'account-monitor': AccountMonitor
+  };
 
-    const Tool = Components[props.match.params.tool];
+  const Tool = Components[props.match.params.tool];
 
-    return(
-        <Tool />
-    );
+  return (
+    <Tool/>
+  );
 
 };
 

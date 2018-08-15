@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="content" style={{height: '100vh'}}>
       <div className="row">
         <div className="col-sm-6 col-xl-3">
           <div className="card card-body">
@@ -341,8 +341,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-
 
 
     </div>

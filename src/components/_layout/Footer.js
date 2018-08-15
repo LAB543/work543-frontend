@@ -3,16 +3,17 @@ import React from 'react';
 const Footer = () => {
   return (
     <div className="navbar navbar-expand-lg navbar-light">
-      
+
       {/* Footer */}
       <div className="text-center d-lg-none w-100">
-        <button type="button" className="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+        <button type="button" className="navbar-toggler dropdown-toggle" data-toggle="collapse"
+                data-target="#navbar-footer">
           <i className="icon-unfold mr-2"></i>
           Footer
         </button>
       </div>
       {/* /Footer */}
-      
+
       {/* Navbar-footer */}
       <div className="navbar-collapse collapse" id="navbar-footer">
         <span className="navbar-text">
@@ -26,12 +27,14 @@ const Footer = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a href="http://demo.interface.club/limitless/docs/" className="navbar-nav-link" target="_blank" rel="noopener noreferrer">
+            <a href="http://demo.interface.club/limitless/docs/" className="navbar-nav-link" target="_blank"
+               rel="noopener noreferrer">
               <i className="icon-file-text2 mr-2"></i> Docs
             </a>
           </li>
           <li className="nav-item">
-            <a href="http://api.work543.com/docs/" className="navbar-nav-link" target="_blank" rel="noopener noreferrer">
+            <a href="http://api.work543.com/docs/" className="navbar-nav-link" target="_blank"
+               rel="noopener noreferrer">
               <i className="icon-cube3 mr-2"></i> API
             </a>
           </li>

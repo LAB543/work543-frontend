@@ -4,15 +4,15 @@ import CommentCollector from "./CommentCollector";
 
 const Youtube = (props) => {
 
-    const Components = {
-        'comment-collector': CommentCollector,
-    };
+  const Components = {
+    'comment-collector': CommentCollector,
+  };
 
-    const Tool = Components[props.match.params.tool];
+  const Tool = Components[props.match.params.tool];
 
-    return(
-        <Tool />
-    );
+  return (
+    <Tool/>
+  );
 };
 
 export default Youtube;

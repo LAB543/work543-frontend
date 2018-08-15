@@ -5,16 +5,16 @@ import PostMonitor from './PostMonitor';
 
 const Facebook = (props) => {
 
-    const Components = {
-      'comment-collector': CommentCollector,
-      'post-monitor': PostMonitor
-    };
+  const Components = {
+    'comment-collector': CommentCollector,
+    'post-monitor': PostMonitor
+  };
 
-    const Tool = Components[props.match.params.tool];
+  const Tool = Components[props.match.params.tool];
 
-    return(
-        <Tool />
-    );
+  return (
+    <Tool/>
+  );
 
 };
 
