@@ -2,13 +2,13 @@ import * as actions from '../constants/ActionTypes';
 
 const initialState = {
   user: {},
-  isAuth : null,
+  isAuth: null,
   token: null,
   error: {}
 }
 
 const authReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actions.USER_REGISTER_SUCCESS:
       return {
         ...state
@@ -34,7 +34,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.payload.token,
-        isAuth : action.payload.isAuth
+        isAuth: action.payload.isAuth
       };
     case actions.USER_LOGIN_CHECK:
       return {
