@@ -16,6 +16,9 @@ import registerServiceWorker from './registerServiceWorker';
 // Reducers
 import reducers from './reducers';
 
+// Bootstrap & Theme JS
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+
 // Middlewares
 const middlewares = [ReduxThunk];
 if (process.env.NODE_ENV === `development`) {

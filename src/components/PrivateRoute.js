@@ -1,13 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
 
-const PrivateRoute = ({exact: Exact, path: Path, component: Component, linkTo: LinkTo, auth: isAuth}) => (
+const PrivateRoute = ({path: Path, component: Component, linkTo: LinkTo}) => (
   <Route path={Path} render={props => (
-    isAuth !== null ?
+    sessionStorage.getItem('user-token') !== null ?
       (<Component {...props} />) :
       (<Redirect to={LinkTo}/>)
   )}/>
 );
 
-export default connect(null, null, null, {pure: false})(PrivateRoute);
+export default PrivateRoute;

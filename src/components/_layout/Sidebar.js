@@ -1,55 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import {_navigationSidebar} from '../../utils'
 
 class Sidebar extends Component {
-   constructor(props) {
-    super(props);
-
-    this.toggleMenu = React.createRef();
-
-    this.state = {
-       active: false
-    };
-  }
-
-  /*
-  onClickDahsboard(e) {
-    e.currentTarget.classList.add('active');
-
-    // remove toggle
-    this.onToggleClick(e);
-  };
-  */
-
-  onToggleClick(e) {
-    e.preventDefault();
-
-    const toggleParents = this.toggleMenu.current.children;
-    const toggleTarget = e.currentTarget.parentElement;
-
-    const toggleItemOpen = 'nav-item-open';
-    const toggleSubOpen = 'nav-sub-open';
-    const toggleVisible = 'nav-sub-visible';
-
-    const filterToggleMenu = Array.prototype.filter.call(toggleParents, (children) => {
-      if (children.classList.contains('nav-submenu')) {
-        return children;
-      }
-    });
-
-    filterToggleMenu.forEach((children) => {
-      if ( (children !== toggleTarget && children.classList.contains(toggleItemOpen))
-          || (children === toggleTarget && children.classList.contains(toggleItemOpen)) ) {
-        children.classList.remove(toggleItemOpen);
-        children.children[1].classList.remove(toggleVisible);
-        children.children[1].classList.remove(toggleSubOpen);
-      } else if(children === toggleTarget) {
-        children.classList.add(toggleItemOpen);
-        children.children[1].classList.add(toggleVisible);
-
-
-      }
-    });
+  componentDidMount() {
+    _navigationSidebar();
   }
 
   render() {
@@ -60,7 +15,7 @@ class Sidebar extends Component {
           {/* Card */}
           <div className="card card-sidebar-mobile">
             {/* Nav */}
-            <ul className="nav nav-sidebar" ref={this.toggleMenu} >
+            <ul className="nav nav-sidebar" data-nav-type="accordion">
               {/* Sidebar - Title - Main */}
               <li className="nav-item-header">
                 <div className="text-uppercase font-size-xs line-height-xs"> Main</div>
@@ -73,19 +28,19 @@ class Sidebar extends Component {
                 </Link>
               </li>
               {/* /Sidebar - Title - Main */}
-              
+
               {/* Sidebar - Title - Tools */}
               <li className="nav-item-header">
                 <div className="text-uppercase font-size-xs line-height-xs">
                   Tools
-                </div> 
+                </div>
                 <i className="icon-hammer-wrench" title="Tools"></i>
               </li>
               { /* Sidebar - Title - Tools */}
-              
+
               {/* Sidebar - Tools - facebook */}
-              <li className="nav-item nav-submenu">
-                <a className="nav-link" id="facebook" onClick={(e) => this.onToggleClick(e)}>
+              <li className="nav-item nav-item-submenu">
+                <a className="nav-link" id="facebook">
                   <i className="icon-facebook2"></i>
                   <span>Facebook</span>
                 </a>
@@ -103,10 +58,10 @@ class Sidebar extends Component {
                 </ul>
               </li>
               {/* /Sidebar - Tools - facebook */ }
-              
+
               {/* Sidebar - Tools - instagram */ }
-              <li className="nav-item nav-submenu">
-                <a className="nav-link" onClick={(e) => this.onToggleClick(e)} >
+              <li className="nav-item nav-item-submenu">
+                <a className="nav-link">
                   <i className="icon-instagram"></i>
                   <span>Instagram</span>
                 </a>
@@ -129,10 +84,10 @@ class Sidebar extends Component {
                 </ul>
               </li>
               {/* /Sidebar - Tools - instagram */}
-              
+
               {/* Sidebar - Tools - youtube */}
-              <li className="nav-item nav-submenu">
-                <a className="nav-link" onClick={(e) => this.onToggleClick(e)} >
+              <li className="nav-item nav-item-submenu">
+                <a className="nav-link">
                   <i className="icon-youtube"></i>
                   <span>Youtube</span>
                 </a>
@@ -145,10 +100,10 @@ class Sidebar extends Component {
                 </ul>
               </li>
               {/* /Sidebar - Tools - youtube */}
-              
+
               {/* /Sidebar - Tools - etc */}
-              <li className="nav-item nav-submenu">
-                <a className="nav-link" onClick={(e) => this.onToggleClick(e)} >
+              <li className="nav-item nav-item-submenu">
+                <a className="nav-link">
                   <i className="icon-hammer-wrench"></i>
                   <span>E.T.C.</span>
                 </a>

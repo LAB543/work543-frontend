@@ -1,5 +1,8 @@
 import React from 'react';
+import {_cardActionCollapse, _cardActionRemove, _cardActionReload} from '../../utils';
+import '../../assets/js/jquery.blockUI';
 
+// Child Component
 import PrivacyMasking from './PrivacyMasking';
 
 const Etc = (props) => {
@@ -11,7 +14,11 @@ const Etc = (props) => {
   const Tool = Components[props.match.params.tool];
 
   return (
-    <Tool/>
+    <Tool
+      cardCollapse={_cardActionCollapse}
+      cardRemove={_cardActionRemove}
+      cardReload={_cardActionReload}
+    />
   );
 };
 

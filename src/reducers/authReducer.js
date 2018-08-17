@@ -22,7 +22,6 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.data.user,
-        token: action.payload.data.token,
         isAuth: true,
       };
     case actions.USER_LOGIN_FAIL:

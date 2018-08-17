@@ -1,0 +1,87 @@
+{
+  "category": [
+    {
+      "header": "true",
+      "title": "Main",
+      "link": null,
+      "icon": "icon-menu",
+      "children": [
+          {
+            "subHeader": true,
+            "title": "Dashboard",
+            "link": "/dashboard",
+            "icon": "icon-home4",
+            "children": null
+          }
+        ]
+      },
+    {
+      "header": true,
+      "title": "Tools",
+      "link": null,
+      "icon": "",
+      "children": [
+        {
+          "subHeader": true,
+          "title": "Facebook",
+          "link": null,
+          "icon": "icon-facebook2",
+          "children": [
+            {
+              "title": "포스트 모니터",
+              "link": "/dashboard/facebook/post-monitor"
+            },
+            {
+              "title": "댓글 수집기",
+              "link": "/dashboard/facebook/comment-collector"
+            }
+          ]
+        },
+        {
+          "subHeader": true,
+          "title": "Instagram",
+          "link": null,
+          "icon": "icon-instagram",
+          "children": [
+            {
+              "title": "계정 모니터",
+              "link": "/dashboard/instagram/account-monitor"
+            },
+            {
+              "title": "포스트 수집기",
+              "link": "/dashboard/instagram/post-collector"
+            },
+            {
+              "title": "태그 수집기",
+              "link": "/dashboard/instagram/tag-collector"
+            }
+          ]
+        },
+        {
+          "subHeader": true,
+          "title": "Youtube",
+          "link": null,
+          "icon": "icon-youtube",
+          "children": [
+            {
+              "title": "댓글 수집기",
+              "link": "/dashboard/youtube/comment-collector"
+            }
+          ]
+        },
+        {
+          "subHeader": true,
+          "title": "E.T.C",
+          "link": null,
+          "icon": "icon-hammer-wrench",
+          "children": [
+            {
+              "title": "개인정보 마스킹",
+              "link": "/dashboard/etc/privacy-masking"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

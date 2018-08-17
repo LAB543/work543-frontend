@@ -1,21 +1,26 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
+import {capitalize} from '../../utils';
 
 class PageHeader extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      mainTitle: '',
+      subTitle: '',
+      toolName: ''
+    }
+  }
 
-    this.groupName = this.groupName ? this.groupName : "Dashboard"
+  currentTitle () {
+    const arr = capitalize(this.props.currentLocation);
+  }
 
-    this.props.history.listen((location, action) => {
-
-      if (action === "PUSH") {
-        var split = location.pathname.split("/");
-        this.groupName = split[1] ? split[1].charAt(0).toUpperCase() + split[1].slice(1) : 'Dashboard';
-        this.toolName = split[2] ? (split[2].charAt(0).toUpperCase() + split[2].slice(1)).replace("-", " ") : null;
-      }
-
-    });
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('this.props : ',this.props.currentLocation);
+    console.log('nextProps : ', nextProps.currentLocation);
+    console.log('compare : ', nextProps.currentLocation !== this.props.currentLocation);
+    return false;
   }
 
   render() {
