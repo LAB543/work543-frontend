@@ -17,7 +17,12 @@ import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
 
 // Containers
-import PrivateRouteContainer from '../containers/PrivateRouteContainer';
+import DashboardContainer from '../containers/DashboardContainer';
+import FacebookContainer from '../containers/FacebookContainer';
+import InstagramContainer from '../containers/InstagramContainer';
+import YoutubeContainer from '../containers/YoutubeContainer';
+import EtcContainer from '../containers/EtcContainer';
+
 
 // Actions
 import {userLoginCheck} from '../actions';
@@ -36,7 +41,11 @@ class App extends Component {
           <PublicRoute path="/login" component={Login} linkTo="/dashboard" />
           <PublicRoute path="/register" component={Register} linkTo="/dashboard" />
           <Route path="/password-reset" component={PasswordReset} />
-          <PrivateRoute path="/dashboard" component={PrivateRouteContainer} linkTo="/login" />
+          <PrivateRoute path="/dashboard" component={DashboardContainer} linkTo="/login" />
+          <PrivateRoute path="/facebook" component={FacebookContainer} linkTo="/login" />
+          <PrivateRoute path="/instagram" component={InstagramContainer} linkTo="/login" />
+          <PrivateRoute path="/youtube" component={YoutubeContainer} linkTo="/login" />
+          <PrivateRoute path="/etc" component={EtcContainer} linkTo="/login" />
           <Route component={NoMatch} />
         </Switch>
         <Footer/>

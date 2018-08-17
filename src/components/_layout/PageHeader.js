@@ -4,23 +4,30 @@ import {capitalize} from '../../utils';
 
 class PageHeader extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
-      mainTitle: '',
-      subTitle: '',
+      groupName: '',
       toolName: ''
     }
   }
 
-  currentTitle () {
-    const arr = capitalize(this.props.currentLocation);
+  componentDidMount() {
+    const curLoc = capitalize(this.props.currentLocation);
+    this.setState({
+      groupName: curLoc[0],
+      toolName: `${curLoc[1] !== undefined ? curLoc[1] : ''}`,
+    });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('this.props : ',this.props.currentLocation);
-    console.log('nextProps : ', nextProps.currentLocation);
-    console.log('compare : ', nextProps.currentLocation !== this.props.currentLocation);
-    return false;
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const curLoc = capitalize(this.props.currentLocation);
+    if (curLoc.length > 1 && curLoc[1] !== prevState.toolName) {
+      this.setState({
+        groupName: curLoc[0],
+        toolName: `${curLoc[1] !== undefined ? curLoc[1] : ''}`,
+      });
+    }
   }
 
   render() {
@@ -31,7 +38,7 @@ class PageHeader extends Component {
           {/* Page-title */}
           <div className="page-title d-flex">
             <h4><i className="icon-arrow-left52 mr-2"></i>
-              <b>{this.groupName}</b> {this.toolName ? " - " + this.toolName : ""}</h4>
+              <b>{this.state.groupName}</b> {this.state.toolName ? " - " + this.state.toolName : ""}</h4>
           </div>
           {/* /Page-title */}
 
@@ -60,10 +67,10 @@ class PageHeader extends Component {
               <Link to="/" className="breadcrumb-item">
                 <i className="icon-home2 mr-2"></i> Home
               </Link>
-              <span className={`breadcrumb-item ${this.toolName ? "" : "active"}`}>{this.groupName}</span>
+              <span className={`breadcrumb-item ${this.state.toolName ? "" : "active"}`}>{this.state.groupName}</span>
               {
-                this.toolName &&
-                <span className="breadcrumb-item active">{this.toolName}</span>
+                this.state.toolName &&
+                <span className="breadcrumb-item active">{this.state.toolName}</span>
               }
             </div>
           </div>

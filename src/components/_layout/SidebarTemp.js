@@ -9,8 +9,10 @@ class Sidebar extends Component {
   }
 
   render() {
+    const checkLocation = this.props.currentLocation[0] === 'etc' ? ['E.T.C'] : this.props.currentLocation;
+
     return (
-      <AccoordianMenu currentLocation={this.props.currentLocation.length < 2 ? capitalize(this.props.currentLocation)[0] : capitalize(this.props.currentLocation)[1]} />
+      <AccoordianMenu currentLocation={capitalize(checkLocation)[0]} />
     );
   };
 };
