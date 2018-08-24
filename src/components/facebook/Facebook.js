@@ -1,5 +1,5 @@
 import React from 'react';
-import {_cardActionCollapse, _cardActionRemove, _cardActionReload} from '../../utils';
+import { _cardActionCollapse, _cardActionRemove, _cardActionReload } from '../../utils';
 import '../../assets/js/jquery.blockUI';
 
 // Child Component

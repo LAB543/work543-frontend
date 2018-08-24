@@ -1,5 +1,6 @@
 import React from 'react';
 import {_cardActionCollapse, _cardActionRemove, _cardActionReload} from '../../utils';
+import { DatatableBasic } from '../../utils/dataTable';
 import '../../assets/js/jquery.blockUI';
 
 // Child Component
@@ -18,6 +19,7 @@ const Youtube = (props) => {
       cardCollapse={_cardActionCollapse}
       cardRemove={_cardActionRemove}
       cardReload={_cardActionReload}
+      dataTableBasic={DatatableBasic}
     />
   );
 };

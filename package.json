@@ -101,6 +101,10 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env" : {
+      "amd": true,
+      "jquery" : true
+    }
   }
 }

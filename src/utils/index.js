@@ -1,7 +1,4 @@
-// utils.js
 /*eslint-disable*/
-import $ from 'jquery';
-window.jQuery = window.$ = $;
 
 export function capitalize(value) {
   return value.map((item) => item.charAt(0).toUpperCase() + item.slice(1));
